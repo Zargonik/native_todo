@@ -8,8 +8,14 @@ interface IHeader {
 const Header: React.FC<IHeader> = ({ day }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.dateText}>{day}</Text>
-      <Text style={styles.dotText}>...</Text>
+      <View>
+        <Text style={styles.dateText}>{day}</Text>
+      </View>
+      <View style={styles.pointWrapper}>
+        <View style={styles.pintView} />
+        <View style={styles.pintView} />
+        <View style={styles.pintView} />
+      </View>
     </View>
   );
 };
@@ -18,16 +24,25 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     paddingLeft: 60,
-    alignItems: "center"
+    paddingRight: 13.5,
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   dateText: {
     fontSize: 32,
     color: "#252A31",
-    fontFamily: "SFProDisplay",
     fontWeight: "bold"
   },
-  dotText: {
-    color: "#DADADA"
+  pointWrapper: {
+    flexDirection: "row",
+    width: 25,
+    justifyContent: "center"
+  },
+  pintView: {
+    width: 5,
+    height: 5,
+    backgroundColor: "#006CFF",
+    borderRadius: 2.5
   }
 });
 

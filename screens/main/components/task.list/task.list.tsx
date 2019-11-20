@@ -10,7 +10,7 @@ interface ITaskList {
 }
 
 const Task: React.FC<types.ITodo> = ({ text, status }) => {
-  const PointIcon = <Icon name="circle" size={30} color="green" />;
+  const PointIcon = <Icon name="circle" size={10} color="green" />;
   return (
     <View style={styles.taskWrapper}>
       <View style={styles.checkboxWrapper}>
@@ -22,8 +22,10 @@ const Task: React.FC<types.ITodo> = ({ text, status }) => {
         />
       </View>
       <View style={styles.taskBox}>
-        <Text style={styles.taskText}>{text}</Text>
-        {PointIcon}
+        <View>
+          <Text style={styles.taskText}>{text}</Text>
+        </View>
+        <View>{PointIcon}</View>
       </View>
     </View>
   );
@@ -48,7 +50,9 @@ const TaskList: React.FC<ITaskList> = ({ taskList }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignItems: "stretch",
+    paddingBottom: 30
   },
   taskWrapper: {
     flexDirection: "row",
@@ -63,7 +67,8 @@ const styles = StyleSheet.create({
   taskBox: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-end",
+    flex: 1,
+    justifyContent: "space-between",
     paddingRight: 15,
     borderBottomColor: "#252A31",
     borderBottomWidth: 1,

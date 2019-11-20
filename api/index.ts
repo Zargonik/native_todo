@@ -1,7 +1,7 @@
 import axtios from "axios";
 import { baseUrl } from "../utils/baseUrl";
 import * as types from "../types/types";
-import { todos } from "../mocks/mocks";
+import { rootTodo } from "../mocks/mocks";
 
 async function fakeResponse() {
   const promise = new Promise((resolve, reject) => {

@@ -4,7 +4,7 @@ export const rootTodo = [
     color: "#EBEFF5",
     tasks: [
       {
-        text: "don't forget to pick Michel from school",
+        text: "don't forget to pick Michel from ",
         status: false
       }
     ]
