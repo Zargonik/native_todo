@@ -1,22 +1,32 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 import * as types from "../../../../types/types";
 
 interface IBoxesList {
   rootTodo: any;
+  handleClick?: Function;
+  closeModal?: Function;
 }
 
 interface ITasksBox {
   color: string;
   title: string;
   tasks: types.ITodo[];
+  handleClick: Function | null;
+  closeModal: Function | null;
 }
 
-const TasksBox: React.FC<ITasksBox> = ({ color, title, tasks }) => {
+export const TasksBox: React.FC<ITasksBox> = ({
+  color,
+  title,
+  tasks,
+  handleClick,
+  closeModal
+}) => {
   const showRow = () => {
-    if (tasks.length) {
-      if (tasks.length > 1) {
+    if (tasks && tasks.length) {
+      if (tasks && tasks.length > 1) {
         return `${tasks.length} tasks`;
       } else {
         return `${tasks.length} task`;
@@ -25,7 +35,12 @@ const TasksBox: React.FC<ITasksBox> = ({ color, title, tasks }) => {
   };
 
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => {
+        handleClick ? handleClick("boxType", title) : null;
+        closeModal ? closeModal() : null;
+      }}
+      // onPress={() => (handleClick ? console.log("click", handleClick()) : null)}
       style={{
         backgroundColor: color,
         borderRadius: 10,
@@ -44,11 +59,15 @@ const TasksBox: React.FC<ITasksBox> = ({ color, title, tasks }) => {
         {title}
       </Text>
       <Text>{showRow()}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
-const BoxesList: React.FC<IBoxesList> = ({ rootTodo }) => {
+const BoxesList: React.FC<IBoxesList> = ({
+  rootTodo,
+  handleClick,
+  closeModal
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
@@ -68,6 +87,8 @@ const BoxesList: React.FC<IBoxesList> = ({ rootTodo }) => {
               color={item.color}
               title={item.title}
               tasks={item.tasks}
+              handleClick={handleClick ? handleClick : null}
+              closeModal={closeModal ? closeModal : null}
             />
           );
         })}
@@ -80,7 +101,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "stretch",
     marginTop: 30,
-    paddingLeft: 60,
+    paddingLeft: 30,
     paddingRight: 15,
     paddingTop: 15
   },

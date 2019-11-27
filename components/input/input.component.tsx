@@ -4,30 +4,15 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 interface IInput {
   inputValue: string;
   handleChange?: Function;
+  placeholder: string;
 }
 
-const styles = StyleSheet.create({
-  // container: {
-  //   width: 100,
-  //   height: 30
-  // },
-  input: {
-    width: 200,
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderRadius: 10,
-    marginRight: 10
-  }
-});
-
-const Input: React.FC<IInput> = ({ inputValue, handleChange }) => {
+const Input: React.FC<IInput> = ({ inputValue, handleChange, placeholder }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Type task"
+        placeholder={placeholder}
         onChangeText={e => {
           return handleChange ? handleChange(e) : null;
         }}
@@ -36,5 +21,17 @@ const Input: React.FC<IInput> = ({ inputValue, handleChange }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "stretch"
+  },
+  input: {
+    height: 50,
+    borderColor: "gray",
+    borderBottomWidth: 1,
+    fontSize: 18
+  }
+});
 
 export default Input;

@@ -6,18 +6,19 @@ import { Provider } from "react-redux";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
-// import Todos from "./screens/todo.list";
-// import Profile from "./screens/profile";
-
 import Main from "./screens/main";
 
 import store from "./core/store";
 import TaskCreation from "./screens/task.creation";
+import BoxCreation from "./screens/box.creation";
+import Test from "./screens/test";
 
 const rootStack = createStackNavigator(
   {
     Main: { screen: Main },
-    taskCreation: { screen: TaskCreation }
+    TaskCreation: { screen: TaskCreation },
+    BoxCreation: { screen: BoxCreation },
+    Test: { screen: Test }
   },
   {
     headerMode: "none",

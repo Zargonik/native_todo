@@ -5,7 +5,8 @@ export const initialValues = {
   taskStatus: false,
   taskDate: "Today",
   alarm: null,
-  boxType: ""
+  boxType: "Inbox",
+  id: "random id"
 };
 
 export const validateSchema = {

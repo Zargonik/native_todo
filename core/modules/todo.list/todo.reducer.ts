@@ -1,57 +1,57 @@
 import { combineReducers } from "redux";
 import combineEvents from "../../../utils/redux/combineEvents";
 
-import * as constant from "./constants";
+import * as constants from "./constants";
 import * as types from "../../../types/types";
 
 const todosReducer = combineEvents(
   {
-    [constant.GET_TODOS_SUCCESS]: (
-      state: types.ITodos,
-      payload: types.ITodos
-    ) => {
-      return payload;
-    },
-    [constant.ADD_TODO]: (state: any, action: any) => {
-      const findSimilar = state.find((todo: types.ITodo) => {
-        return todo.text === action.payload.text;
-      });
-      if (!findSimilar) {
-        return [...state, action.payload];
-      } else {
-        return state;
-      }
-    },
-    [constant.REMOVE_TODO]: (state: any, action: any) => {
-      const filteredState = state.filter((todo: types.ITodo) => {
-        return !(todo.id === action.payload.id);
-      });
-      return filteredState;
-    },
-    [constant.CHANGE_TODO_STATUS]: (state: any, action: any) => {
-      const filteredState = state.map((todo: types.ITodo) => {
-        if (todo.id === action.payload.id) {
-          return {
-            text: todo.text,
-            id: todo.id,
-            status: !todo.status
-          };
+    [constants.ADD_TODO]: (state: any, action: { payload: types.ITodo }) => {
+      return state.map((taskBox: types.ITasksBox) => {
+        if (taskBox.title === action.payload.boxType) {
+          return { ...taskBox, tasks: [...taskBox.tasks, action.payload] };
         } else {
-          return todo;
+          return state;
         }
       });
-      return filteredState;
+    },
+    [constants.ADD_TASKS_BOX]: (
+      state: types.IRootTodo,
+      action: { payload: types.ITasksBox }
+    ) => {
+      console.log(action.payload, "reducer");
+      state.rootTodo.map(taskBox => {
+        if (taskBox === action.payload) {
+          return;
+        } else {
+          return [...state.rootTodo, action.payload];
+        }
+      });
     }
   },
-  []
+  [
+    {
+      title: "Inbox",
+      color: "#EBEFF5",
+      id: 1,
+      tasks: [
+        {
+          text: "testing app",
+          status: false,
+          boxType: "Inbox",
+          id: "asfagfndklgn"
+        }
+      ]
+    }
+  ]
 );
 
 const spinnerReducer = combineEvents(
   {
-    [constant.SPINNER_ON]: (state: boolean, action: Function) => {
+    [constants.SPINNER_ON]: (state: boolean, action: Function) => {
       return true;
     },
-    [constant.SPINNER_OFF]: (state: boolean, action: Function) => {
+    [constants.SPINNER_OFF]: (state: boolean, action: Function) => {
       return false;
     }
   },
@@ -59,6 +59,6 @@ const spinnerReducer = combineEvents(
 );
 
 export default combineReducers({
-  list: todosReducer,
+  rootTodo: todosReducer,
   spinnerStatus: spinnerReducer
 });

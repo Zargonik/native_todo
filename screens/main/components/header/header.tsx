@@ -1,21 +1,26 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface IHeader {
   day: string;
+  navigate: any;
 }
 
-const Header: React.FC<IHeader> = ({ day }) => {
+const Header: React.FC<IHeader> = ({ day, navigate }) => {
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.dateText}>{day}</Text>
       </View>
-      <View style={styles.pointWrapper}>
+      <TouchableOpacity
+        style={styles.pointWrapper}
+        onPress={() => navigate("Test")}
+      >
         <View style={styles.pintView} />
         <View style={styles.pintView} />
         <View style={styles.pintView} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -36,6 +41,7 @@ const styles = StyleSheet.create({
   pointWrapper: {
     flexDirection: "row",
     width: 25,
+    height: 25,
     justifyContent: "center"
   },
   pintView: {

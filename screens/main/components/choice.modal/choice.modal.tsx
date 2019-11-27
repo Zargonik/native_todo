@@ -41,7 +41,7 @@ const ChoiceModal: React.FC<IChoiceModal> = ({
         }}
         onPress={() => {
           setModalStatus();
-          navigate("taskCreation");
+          navigate("TaskCreation");
         }}
       >
         <Icon name="check-circle" size={30} color="#006CFF" />
@@ -59,7 +59,7 @@ const ChoiceModal: React.FC<IChoiceModal> = ({
         }}
         onPress={() => {
           setModalStatus();
-          navigate("taskCreation");
+          navigate("BoxCreation");
         }}
       >
         <Icon name="th-list" size={30} color="#006CFF" />

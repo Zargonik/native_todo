@@ -10,7 +10,7 @@ async function fakeResponse() {
   const response = await promise;
 }
 
-export const getTodo = () => fakeResponse();
+export const getRootTodo = () => fakeResponse();
 
 export const sendTodo = (payload: types.ITodo) => fakeResponse();
 

@@ -1,7 +1,11 @@
 import * as constants from "./constants";
 import * as types from "../../../types/types";
 
+export const spinnerOn = () => ({ type: constants.SPINNER_ON });
+export const spinnerOff = () => ({ type: constants.SPINNER_OFF });
+
 export const addTodo = (payload: types.ITodo) => {
+  // console.log(payload, "add todo");
   return {
     type: constants.ADD_TODO,
     payload
@@ -18,45 +22,35 @@ export const changeTodoStatus = (payload: types.ITodo) => ({
   payload
 });
 
-export const getTodosRequest = () => ({ type: constants.GET_TODOS_REQUEST });
+export const getRootTodoRequest = () => ({
+  type: constants.GET_ROOT_TODO_REQUEST
+});
 
-export const getTodosSuccess = (payload: types.ITodos) => ({
-  type: constants.GET_TODOS_SUCCESS,
+export const getRootTodoSuccess = (payload: types.IRootTodo) => ({
+  type: constants.GET_ROOT_TODO_SUCCESS,
   payload
 });
 
-export const getTodosFail = (payload: string) => ({
-  type: constants.GET_TODOS_FAIL,
+export const getRootTodoFail = (payload: types.IServersResponse) => ({
+  type: constants.GET_ROOT_TODO_FAIL,
   payload
 });
 
-export const sendTodoRequest = (payload: types.ITodo) => ({
-  type: constants.SEND_TODO_REQUEST,
-  payload
-});
+export const sendTodoRequest = (payload: types.ITodo) => {
+  // console.log("send request", payload);
+  return {
+    type: constants.SEND_TODO_REQUEST,
+    payload
+  };
+};
 
-export const sendTodoSuccess = (payload: string) => ({
+export const sendTodoSuccess = (payload: types.IServersResponse) => ({
   type: constants.SEND_TODO_SUCCESS,
   payload
 });
 
-export const sendTodoFail = (payload: string) => ({
+export const sendTodoFail = (payload: types.IServersResponse) => ({
   type: constants.SEND_TODO_FAIL,
-  payload
-});
-
-export const deleteTodoRequest = (payload: types.ITodo) => ({
-  type: constants.DELETE_TODO_REQUEST,
-  payload
-});
-
-export const deleteTodoSuccess = (payload: string) => ({
-  type: constants.DELETE_TODO_SUCCESS,
-  payload
-});
-
-export const deleteTodoFail = (payload: string) => ({
-  type: constants.DELETE_TODO_FAIL,
   payload
 });
 
@@ -65,15 +59,67 @@ export const changeTodoStatusRequest = (payload: types.ITodo) => ({
   payload
 });
 
-export const changeTodoStatusSuccess = (payload: string) => ({
+export const changeTodoStatusSuccess = (payload: types.ITodo) => ({
   type: constants.CHANGE_TODO_STATUS_SUCCESS,
   payload
 });
 
-export const changeTodoStatusFail = (payload: string) => ({
+export const changeTodoStatusFail = (payload: types.IServersResponse) => ({
   type: constants.CHANGE_TODO_STATUS_FAIL,
   payload
 });
 
-export const spinnerOn = () => ({ type: constants.SPINNER_ON });
-export const spinnerOff = () => ({ type: constants.SPINNER_OFF });
+export const deleteTodoRequest = (payload: types.ITodo) => ({
+  type: constants.DELETE_TODO_REQUEST,
+  payload
+});
+
+export const deleteTodoSuccess = (payload: types.IServersResponse) => ({
+  type: constants.DELETE_TODO_SUCCESS,
+  payload
+});
+
+export const deleteTodoFail = (payload: types.IServersResponse) => ({
+  type: constants.DELETE_TODO_FAIL,
+  payload
+});
+
+export const addTasksBox = (payload: types.ITasksBox) => ({
+  type: constants.ADD_TASKS_BOX,
+  payload
+});
+
+export const removeTasksBox = (payload: types.ITasksBox) => ({
+  type: constants.REMOVE_TASKS_BOX,
+  payload
+});
+
+export const sendTaskBoxRequest = (payload: types.ITasksBox) => ({
+  type: constants.SEND_TASK_BOX_REQUEST,
+  payload
+});
+
+export const sendTaskBoxSuccess = (payload: types.IServersResponse) => ({
+  type: constants.SEND_TASK_BOX_SUCCESS,
+  payload
+});
+
+export const sendTaskBoxFail = (payload: types.IServersResponse) => ({
+  type: constants.SEND_TASK_BOX_FAIL,
+  payload
+});
+
+export const deleteTaskBoxRequest = (payload: types.ITasksBox) => ({
+  type: constants.DELETE_TASK_BOX_REQUEST,
+  payload
+});
+
+export const deleteTaskBoxSuccess = (payload: types.IServersResponse) => ({
+  type: constants.DELETE_TASK_BOX_SUCCESS,
+  payload
+});
+
+export const deleteTaskBoxFail = (payload: types.IServersResponse) => ({
+  type: constants.DELETE_TASK_BOX_FAIL,
+  payload
+});
