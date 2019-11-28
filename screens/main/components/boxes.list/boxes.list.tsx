@@ -68,6 +68,7 @@ const BoxesList: React.FC<IBoxesList> = ({
   handleClick,
   closeModal
 }) => {
+  console.log(rootTodo, "rootTodo");
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
@@ -80,13 +81,13 @@ const BoxesList: React.FC<IBoxesList> = ({
         </Text>
       </View>
       <View>
-        {rootTodo.map((item: types.ITodoList, index: number) => {
+        {rootTodo.map((tasksBox: types.ITasksBox, index: number) => {
           return (
             <TasksBox
               key={index}
-              color={item.color}
-              title={item.title}
-              tasks={item.tasks}
+              color={tasksBox.color}
+              title={tasksBox.title}
+              tasks={tasksBox.tasks}
               handleClick={handleClick ? handleClick : null}
               closeModal={closeModal ? closeModal : null}
             />

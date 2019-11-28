@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { ColorPicker, toHsv } from "react-native-color-picker";
+import React from "react";
+import { View, Text } from "react-native";
+import { ColorPicker, fromHsv } from "react-native-color-picker";
 
 interface IColorPicker {
   setColor: Function;
@@ -23,7 +23,7 @@ const Picker: React.FC<IColorPicker> = ({ setColor, color }) => {
         defaultColor="purple"
         oldColor="purple"
         color={color}
-        onColorChange={color => setColor(color)}
+        onColorChange={color => setColor(fromHsv(color))}
         onColorSelected={color => console.log(`Color selected: ${color}`)}
         style={{ flex: 1, backgroundColor: "#FFFFFF" }}
       />

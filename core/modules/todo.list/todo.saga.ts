@@ -48,11 +48,12 @@ function* sendTodoSaga(action: any) {
 
 function* sendTasksBoxSaga(action: any) {
   try {
-    yield put(action.spinnerOn());
+    // yield put(action.spinnerOn());
     // const response = yield call(api.getRootTodo);
     yield put(actions.addTasksBox(action.payload));
-    yield put(actions.spinnerOff());
+    // yield put(actions.spinnerOff());
   } catch (e) {
+    // console.log(action.payload, "saga fail");
     yield put(actions.sendTaskBoxFail(e));
     yield put(actions.spinnerOff());
   }

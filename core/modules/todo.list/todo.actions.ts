@@ -84,30 +84,39 @@ export const deleteTodoFail = (payload: types.IServersResponse) => ({
   payload
 });
 
-export const addTasksBox = (payload: types.ITasksBox) => ({
-  type: constants.ADD_TASKS_BOX,
-  payload
-});
+export const addTasksBox = (payload: types.ITasksBox) => {
+  // console.log(payload, "actions add task box");
+  return {
+    type: constants.ADD_TASKS_BOX,
+    payload
+  };
+};
 
 export const removeTasksBox = (payload: types.ITasksBox) => ({
   type: constants.REMOVE_TASKS_BOX,
   payload
 });
 
-export const sendTaskBoxRequest = (payload: types.ITasksBox) => ({
-  type: constants.SEND_TASK_BOX_REQUEST,
-  payload
-});
+export const sendTaskBoxRequest = (payload: types.ITasksBox) => {
+  // console.log(payload, "action creator");
+  return {
+    type: constants.SEND_TASK_BOX_REQUEST,
+    payload
+  };
+};
 
 export const sendTaskBoxSuccess = (payload: types.IServersResponse) => ({
   type: constants.SEND_TASK_BOX_SUCCESS,
   payload
 });
 
-export const sendTaskBoxFail = (payload: types.IServersResponse) => ({
-  type: constants.SEND_TASK_BOX_FAIL,
-  payload
-});
+export const sendTaskBoxFail = (payload: types.IServersResponse) => {
+  console.log(payload, "error message");
+  return {
+    type: constants.SEND_TASK_BOX_FAIL,
+    payload
+  };
+};
 
 export const deleteTaskBoxRequest = (payload: types.ITasksBox) => ({
   type: constants.DELETE_TASK_BOX_REQUEST,

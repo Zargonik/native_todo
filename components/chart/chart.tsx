@@ -1,44 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import AnimateNumber from "react-native-animate-number";
+import { IChart } from "../../screens/test/types";
 
-interface IChart {
-  firstCircleParams: {
-    start: number;
-    range: number;
-    backgroundColor: string;
-    fillBarColor: string;
-    title: string;
-    titleColor: string;
-    number: number;
-    numberColor: string;
-  };
-  secondCircleParams: {
-    start: number;
-    range: number;
-    backgroundColor: string;
-    fillBarColor: string;
-    title: string;
-    titleColor: string;
-    number: number;
-    numberColor: string;
-  };
-}
-
-const Chart: React.FC<IChart> = ({ firstCircleParams, secondCircleParams }) => {
-  const switchDotOnComma = (str: string) => {
-    return str
-      .split("")
-      .map((symbol: string) => {
-        if (symbol === ".") {
-          return ",";
-        } else {
-          return symbol;
-        }
-      })
-      .join("");
-  };
-
+const Chart: React.FC<IChart> = ({
+  firstCircleParams,
+  secondCircleParams,
+  animationDuration = 1500
+}) => {
   const screenWidth = Dimensions.get("window").width;
   const firstCircleSize = screenWidth * 0.8;
   const secondCircleSize = screenWidth * 0.6;
@@ -57,6 +27,9 @@ const Chart: React.FC<IChart> = ({ firstCircleParams, secondCircleParams }) => {
   const secondCircleFill =
     (secondCircleParams.number * 100) / secondCircleParams.range;
 
+  const numberFormatter = (digitsAfterDot: number) => (data: number) =>
+    data.toFixed(digitsAfterDot).replace(/\./g, ",");
+
   return (
     <View style={styles.container}>
       <View style={styles.firstCircle}>
@@ -65,11 +38,10 @@ const Chart: React.FC<IChart> = ({ firstCircleParams, secondCircleParams }) => {
           width={firstCircleWidth}
           fill={firstCircleFill}
           rotation={0}
-          duration={1500}
+          duration={animationDuration}
           lineCap={"round"}
           tintColor={firstCircleParams.fillBarColor}
-          onAnimationComplete={() => console.log("onAnimationComplete")}
-          backgroundColor="#3d5875"
+          backgroundColor={firstCircleParams.backgroundColor}
         />
       </View>
       <View style={styles.secondCircle}>
@@ -78,55 +50,57 @@ const Chart: React.FC<IChart> = ({ firstCircleParams, secondCircleParams }) => {
           width={secondCircleWidth}
           fill={secondCircleFill}
           rotation={0}
-          duration={1500}
+          duration={animationDuration}
           lineCap={"round"}
           tintColor={secondCircleParams.fillBarColor}
-          onAnimationComplete={() => console.log("onAnimationComplete")}
-          backgroundColor="#3d5875"
+          backgroundColor={secondCircleParams.backgroundColor}
         />
       </View>
       <View
         style={{
           position: "absolute",
-          // borderWidth: 1,
           width: textBoxWidth,
           height: textBoxHeight,
           alignItems: "center",
           justifyContent: "space-between"
         }}
       >
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View style={styles.subTextBox}>
           <Text
             style={{ fontSize: titleSize, color: firstCircleParams.titleColor }}
           >
-            title 1
+            {firstCircleParams.title}
           </Text>
-          <Text
+          <AnimateNumber
             style={{
               fontSize: numbersSize,
               color: firstCircleParams.numberColor
             }}
-          >
-            {switchDotOnComma(firstCircleParams.number.toString())}
-          </Text>
+            value={firstCircleParams.number}
+            formatter={numberFormatter(
+              firstCircleParams.animationDigitsAfterDot
+            )}
+          />
         </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View style={styles.subTextBox}>
           <Text
             style={{
               fontSize: titleSize,
               color: secondCircleParams.titleColor
             }}
           >
-            title 2
+            {secondCircleParams.title}
           </Text>
-          <Text
+          <AnimateNumber
             style={{
               fontSize: numbersSize,
               color: secondCircleParams.numberColor
             }}
-          >
-            {switchDotOnComma(secondCircleParams.number.toString())}
-          </Text>
+            value={secondCircleParams.number}
+            formatter={numberFormatter(
+              secondCircleParams.animationDigitsAfterDot
+            )}
+          />
         </View>
       </View>
     </View>
@@ -137,21 +111,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    borderWidth: 2,
     justifyContent: "center",
     backgroundColor: "black"
   },
   firstCircle: {
-    // flex: 1,
     position: "absolute"
   },
   secondCircle: {
-    // flex: 1,
     position: "absolute"
   },
   textBox: {
     position: "absolute"
-    // borderWidth: 1
+  },
+  subTextBox: {
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 

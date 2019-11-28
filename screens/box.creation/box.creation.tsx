@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -12,7 +11,7 @@ import { connect } from "react-redux";
 
 import * as actions from "../../core/modules/todo.list/todo.actions";
 
-import { fromHsv } from "react-native-color-picker";
+import { getRandomId } from "../../utils/subFunctions";
 
 import CancelBtn from "../../components/cancel.btn";
 import DoneBtn from "../../components/done.btn";
@@ -39,7 +38,8 @@ const BoxCreation: React.FC<IBoxCreation> = ({ navigation, sendTaskBox }) => {
 
   const onColorChange = (color: any) => setColor(color);
 
-  const handleSubmit = () => sendTaskBox({ title: inputValue, color });
+  const handleSubmit = () =>
+    sendTaskBox({ title: inputValue, color, id: getRandomId(), tasks: [] });
 
   return (
     <DismissKeyboard>

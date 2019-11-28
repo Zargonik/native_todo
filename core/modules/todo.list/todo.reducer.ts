@@ -16,17 +16,18 @@ const todosReducer = combineEvents(
       });
     },
     [constants.ADD_TASKS_BOX]: (
-      state: types.IRootTodo,
+      state: any,
       action: { payload: types.ITasksBox }
     ) => {
-      console.log(action.payload, "reducer");
-      state.rootTodo.map(taskBox => {
-        if (taskBox === action.payload) {
-          return;
+      const newState = state.map((taskBox: types.ITasksBox) => {
+        // console.log(taskBox, action.payload, "reducer task box");
+        if (taskBox.title === action.payload.title) {
+          return state;
         } else {
-          return [...state.rootTodo, action.payload];
+          return [...state, action.payload];
         }
       });
+      return newState;
     }
   },
   [
