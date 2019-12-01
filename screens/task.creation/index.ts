@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const initialValues = {
-  task: "",
+  text: "",
   taskStatus: false,
   taskDate: "Today",
   alarm: null,
@@ -10,7 +10,7 @@ export const initialValues = {
 };
 
 export const validateSchema = {
-  task: Yup.string()
+  text: Yup.string()
     .min(2, "2 символа минимум")
     .max(50, "50 слишком много сиволов")
     .required("Обязательное поле")

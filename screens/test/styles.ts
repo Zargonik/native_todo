@@ -5,10 +5,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "stretch"
   },
-  backBtnWrapper: {
-    width: 30,
-    height: 25
-  },
   textColor: {
     color: "#006CFF"
   },
@@ -22,6 +18,12 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 30
   },
+  backBtnWrapper: {
+    backgroundColor: "black",
+    paddingHorizontal: 20,
+    paddingTop: 30,
+    justifyContent: "flex-start"
+  },
   btn: {
     borderWidth: 1,
     borderColor: "#006CFF",
@@ -30,7 +32,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    minWidth: 100
+    minWidth: 100,
+    maxWidth: 110
   },
   btnText: {
     color: "#006CFF"

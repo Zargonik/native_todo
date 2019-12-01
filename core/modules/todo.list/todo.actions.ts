@@ -5,7 +5,6 @@ export const spinnerOn = () => ({ type: constants.SPINNER_ON });
 export const spinnerOff = () => ({ type: constants.SPINNER_OFF });
 
 export const addTodo = (payload: types.ITodo) => {
-  // console.log(payload, "add todo");
   return {
     type: constants.ADD_TODO,
     payload
@@ -37,7 +36,6 @@ export const getRootTodoFail = (payload: types.IServersResponse) => ({
 });
 
 export const sendTodoRequest = (payload: types.ITodo) => {
-  // console.log("send request", payload);
   return {
     type: constants.SEND_TODO_REQUEST,
     payload
@@ -85,7 +83,6 @@ export const deleteTodoFail = (payload: types.IServersResponse) => ({
 });
 
 export const addTasksBox = (payload: types.ITasksBox) => {
-  // console.log(payload, "actions add task box");
   return {
     type: constants.ADD_TASKS_BOX,
     payload
@@ -98,7 +95,6 @@ export const removeTasksBox = (payload: types.ITasksBox) => ({
 });
 
 export const sendTaskBoxRequest = (payload: types.ITasksBox) => {
-  // console.log(payload, "action creator");
   return {
     type: constants.SEND_TASK_BOX_REQUEST,
     payload
@@ -111,7 +107,6 @@ export const sendTaskBoxSuccess = (payload: types.IServersResponse) => ({
 });
 
 export const sendTaskBoxFail = (payload: types.IServersResponse) => {
-  console.log(payload, "error message");
   return {
     type: constants.SEND_TASK_BOX_FAIL,
     payload

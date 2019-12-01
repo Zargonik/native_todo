@@ -19,6 +19,11 @@ const Test: React.FC<ITest> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.backBtnWrapper}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
+          <Text style={styles.btnText} >Go Back</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.ChartWrapper}>
         <Chart
           firstCircleParams={props.firstCircleParams}

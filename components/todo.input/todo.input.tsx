@@ -15,9 +15,9 @@ const TodoInput: React.FC<ITodoInput> = ({
   return (
     <TextInput
       style={{ height: 25, color: "#006CFF", fontSize: 18 }}
-      onChangeText={handleChange("task")}
-      onBlur={handleBlur("task")}
-      value={values.task}
+      onChangeText={handleChange("text")}
+      onBlur={handleBlur("text")}
+      value={values.text}
       placeholder={"what do you want to do?"}
     />
   );

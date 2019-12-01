@@ -68,7 +68,7 @@ const BoxesList: React.FC<IBoxesList> = ({
   handleClick,
   closeModal
 }) => {
-  console.log(rootTodo, "rootTodo");
+  console.log(rootTodo)
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>

@@ -19,7 +19,16 @@ const todosReducer = combineEvents(
       state: any,
       action: { payload: types.ITasksBox }
     ) => {
-      const newState = state.map((taskBox: types.ITasksBox) => {
+      // const newState = state.map((taskBox: types.ITasksBox) => {
+      //   // console.log(taskBox, action.payload, "reducer task box");
+      //   if (taskBox.title === action.payload.title) {
+      //     return state;
+      //   } else {
+      //     return [...state, action.payload];
+      //   }
+      // });
+      // return newState;
+      return state.map((taskBox: types.ITasksBox) => {
         // console.log(taskBox, action.payload, "reducer task box");
         if (taskBox.title === action.payload.title) {
           return state;
@@ -27,7 +36,6 @@ const todosReducer = combineEvents(
           return [...state, action.payload];
         }
       });
-      return newState;
     }
   },
   [

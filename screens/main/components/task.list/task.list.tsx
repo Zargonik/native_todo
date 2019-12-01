@@ -19,7 +19,7 @@ const Task: React.FC<types.ITodo> = ({ text, status, color }) => {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={status}
-          onPress={() => console.log("check task")}
+          // onPress={() => console.log("check task")}
         />
       </View>
       <View style={styles.taskBox}>
